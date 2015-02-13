@@ -1,0 +1,7 @@
+Turns out I was right. My solution to the problem by Joan was right. 
+
+Apparently the raspberry pi 2 is powerful enough to be used as a main machine. I'm very skeptical. I have just finished installing arch on the card, and will see if I can get some sort of basic desktop going on. See if it can handle some javascript heavy web browsing. 
+
+Also, perhaps I should buy a new micro sd card, the pi seems to take forever for any operation that requires writing to the memory.
+
+Will keep updating. 
