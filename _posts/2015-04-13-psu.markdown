@@ -1,0 +1,17 @@
+The PSU for my new machine has arrived, and it is an absolute beauty
+![](http://www.evga.com/products/images/gallery/110-B1-0750-VR_XL_4.jpg)
+
+I had absolutely no clue that modular power supplies were a thing. This probably tells you how long it has been since I last build a machine. 
+
+The pi2, as much as I love the idea, was a no go for my needs. The web has turned into a jungle where a strong processor is required, so why not? Lets get a cheap PC, and go with it. This does not mean I will not continue my pursuit of a cheap low power machine, but will probably delay the answer to my questions, if any. 
+
+When it comes to computer cases, they all seem pretty standard. Square boxes. Really, there is not much else asides from that. A very long time ago, I came across some hackintosh computer that was using the bitfenix case, and instantly fell in love with it. I quickly added it to my amazon shopping cart, this was probably lik 16/18 months ago? Until last week, when I finally ordered it. 
+
+It arrived last friday. And it turns out that whoever decided the names for the sizes of motherboards was an absolute idiot. To me, as an engineer, it makes virtually, and I have a pretty good imagination, no sense that Micro ITX would be bigger than MINI-ITX, but that is the case. Get it? That is the case. 
+
+![](http://upload.wikimedia.org/wikipedia/commons/1/11/VIA_Mini-ITX_Form_Factor_Comparison.jpg)
+
+So I had to go and return to amazon the one I ordered and locate a model compatible with Micro-ITX. Luckily I was able to, but that is a story on its own. 
+
+Currently copying the img of archlinux into the usb stick! Will report back. 
+![BitFenix case](http://www.maximumpc.com/files/prodigy_m.jpg)
