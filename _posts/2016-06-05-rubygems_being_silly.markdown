@@ -11,5 +11,6 @@ I was having the following issue today:
 
 It turns out it was a rubygems issue, so all I had to do was:
 
-```gem update --system
-gem cleanup```
+```gem update --system```
+followed by:
+```gem cleanup```
