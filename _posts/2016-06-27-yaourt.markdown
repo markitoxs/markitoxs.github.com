@@ -1,0 +1,36 @@
+ ~  yaourt -Qm
+ local/atom-editor-git 1.10.0.dev.221118c-1
+ local/downgrader 2.0.0-3
+ local/gnutls28 3.3.22-3
+ local/google-chrome 51.0.2704.103-1
+ local/google-chrome-beta 52.0.2743.41-1
+ local/lib32-dbus-glib 0.106-1
+ local/lib32-gconf 3.2.6-1
+ local/lib32-gnutls28 3.3.22-3
+ local/lib32-kmod 22-1
+ local/lib32-libgcrypt15 1.5.4-1
+ local/lib32-libpng12 1.2.56-2
+ local/lib32-libudev0 182-2
+ local/libappindicator-gtk2 12.10.0-8
+ local/libappindicator-gtk3 12.10.0-8
+ local/libappindicator-sharp 12.10.0-8
+ local/libdbusmenu-glib 16.04.0-1
+ local/libdbusmenu-gtk2 16.04.0-1
+ local/libdbusmenu-gtk3 16.04.0-1
+ local/libindicator-gtk2 12.10.1-6
+ local/libindicator-gtk3 12.10.1-6
+ local/libmysqlclient 5.7.13-1
+ local/libpng12 1.2.56-3
+ local/libudev0 182-3
+ local/mysql 5.7.13-1
+ local/mysql-clients 5.7.13-1
+ local/pasystray-git 0.5.2.r54.g13e683e-1 (multimedia)
+ local/prelink 20130503-3
+ local/rbenv 1.0.0-1
+ local/ruby-build 20160330-1
+ local/steam-native 1.0.0.52-1
+ local/ttf-unifont 7.0.06-1
+ local/vim-lightline-git 20150318-1 (vim-plugins)
+ local/xfce-theme-manager 0.3.7-1
+ local/xfce4-indicator-plugin 2.3.3-2
+
