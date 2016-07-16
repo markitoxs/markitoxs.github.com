@@ -1,5 +1,5 @@
  ``` ~  yaourt -Qm
- local/atom-editor-git 1.10.0.dev.221118c-1
+ local/atom-editor-git 1.10.0.dev.221118c-1 
  local/downgrader 2.0.0-3
  local/gnutls28 3.3.22-3
  local/google-chrome 51.0.2704.103-1
