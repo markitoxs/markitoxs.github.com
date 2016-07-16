@@ -230,6 +230,7 @@ Got to Shows/Add Shows/Add New Show
  - Find the show
  - Select Parent folder as: `/mnt/tera/Videos/tvshows`  
 <br />
+
 Dont forget to enable the service with: `systemctl enable sickrage`
 
 Nvidia Shield TV
