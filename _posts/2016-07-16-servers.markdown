@@ -157,7 +157,7 @@ The important things to note are:
   * The usage of that move method:  
     ```
     system.method.set_key = event.download.finished,move_complete,"d.set_directory=$d.get_finished_dir=;execute=mkdir,-p,$d.get_finished_dir=;execute=mv,-u,$d.get_base_path=,$d.get_finished_dir="
-    ```
+    ```  
 
 
 Then go ahead and create a systemd unit file to start rTorrent on boot:
