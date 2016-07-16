@@ -6,8 +6,8 @@
 </description>
     <link>http://markitoxs.github.com/</link>
     <atom:link href="http://markitoxs.github.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 16 Jul 2016 12:48:57 -0700</pubDate>
-    <lastBuildDate>Sat, 16 Jul 2016 12:48:57 -0700</lastBuildDate>
+    <pubDate>Sat, 16 Jul 2016 12:59:21 -0700</pubDate>
+    <lastBuildDate>Sat, 16 Jul 2016 12:59:21 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -83,73 +83,74 @@ UUID=29848b2b-9690-4961-8cba-929a734fe181 /mnt/tera ext4 rw,relatime,discard,dat
 &lt;h2 id=&quot;rtorrent-096&quot;&gt;rTorrent (0.9.6)&lt;/h2&gt;
 &lt;p&gt;Alright, here is my &lt;code class=&quot;highlighter-rouge&quot;&gt;.rtorrent.rc&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;```
-  [root@montecarlo ~]# cat .rtorrent.rc
-  max_peers_seed = 5000
-  max_uploads = 30
-  upload_rate = 10&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@montecarlo ~]# cat .rtorrent.rc
+max_peers_seed = 5000
+max_uploads = 30
+upload_rate = 10
 
-&lt;p&gt;# Enable the default ratio group.
-  ratio.enable=&lt;/p&gt;
+# Enable the default ratio group.
+ratio.enable=
 
-&lt;p&gt;# Change the limits, the defaults should be sufficient.
-  ratio.min.set=5
-  ratio.max.set=10
-  ratio.upload.set=20M&lt;/p&gt;
+# Change the limits, the defaults should be sufficient.
+ratio.min.set=5
+ratio.max.set=10
+ratio.upload.set=20M
 
-&lt;p&gt;# Changing the command triggered when the ratio is reached.
-  system.method.set = group.seeding.ratio.command, d.close=, d.erase=&lt;/p&gt;
+# Changing the command triggered when the ratio is reached.
+system.method.set = group.seeding.ratio.command, d.close=, d.erase=
 
-&lt;p&gt;# enable dht
-  dht = on&lt;/p&gt;
+# enable dht
+dht = on
 
-&lt;p&gt;# UDP port to use for DHT.
-  #
-  dht_port = 12300&lt;/p&gt;
+# UDP port to use for DHT.
+#
+dht_port = 12300
 
-&lt;p&gt;# Set whetever the client should try to connect to UDP trackers.
-  use_udp_trackers = yes&lt;/p&gt;
+# Set whetever the client should try to connect to UDP trackers.
+use_udp_trackers = yes
 
-&lt;p&gt;# Start opening ports at a random position within the port range.
-  port_random = yes&lt;/p&gt;
+# Start opening ports at a random position within the port range.
+port_random = yes
 
-&lt;p&gt;# Where do you want your downloads to go?
-  directory = /mnt/tera/downloads/
-  system.umask.set = 0000&lt;/p&gt;
+# Where do you want your downloads to go?
+directory = /mnt/tera/downloads/
+system.umask.set = 0000
 
-&lt;p&gt;# You can put this anywhere you like, but I put it here.
-  # Remember that you’ll have to create this directory
-  session = ~/.rtorrent/session&lt;/p&gt;
+# You can put this anywhere you like, but I put it here.
+# Remember that you&#39;ll have to create this directory
+session = ~/.rtorrent/session
 
-&lt;p&gt;# Port range to use for listening.
-  # Remember if you’re connected through a NAT router, you’ll
-  # need to forward these ports.
-  port_range = 50471-50479
-  port_random = yes&lt;/p&gt;
+# Port range to use for listening.
+# Remember if you&#39;re connected through a NAT router, you&#39;ll
+# need to forward these ports.
+port_range = 50471-50479
+port_random = yes
 
-&lt;p&gt;# Enable peer exchange (for torrents not marked private)
-  peer_exchange = yes&lt;/p&gt;
+# Enable peer exchange (for torrents not marked private)
+peer_exchange = yes
 
-&lt;p&gt;#encription
-  encryption=allow_incoming,try_outgoing,enable_retry&lt;/p&gt;
+#encription
+encryption=allow_incoming,try_outgoing,enable_retry
 
-&lt;p&gt;scgi_port = :5000
-  log.xmlrpc  = /tmp/log/xmlrpc.log&lt;/p&gt;
+scgi_port = :5000
+log.xmlrpc  = /tmp/log/xmlrpc.log
 
-&lt;p&gt;log.open_file = “rtorrent.log”, (cat,/tmp/rtorrent.log)&lt;br /&gt;
-  log.open_file = “tracker.log”, (cat,/tmp/tracker.log)&lt;/p&gt;
+log.open_file = &quot;rtorrent.log&quot;, (cat,/tmp/rtorrent.log)  
+log.open_file = &quot;tracker.log&quot;, (cat,/tmp/tracker.log)  
 
-&lt;p&gt;log.add_output = “info”, “rtorrent.log”&lt;/p&gt;
+log.add_output = &quot;info&quot;, &quot;rtorrent.log&quot;
 
-&lt;p&gt;log.add_output = “dht_debug”, “tracker.log”
-  log.add_output = “tracker_debug”, “tracker.log”&lt;/p&gt;
+log.add_output = &quot;dht_debug&quot;, &quot;tracker.log&quot;
+log.add_output = &quot;tracker_debug&quot;, &quot;tracker.log&quot;
 
-&lt;p&gt;#TVSHOWS LABEL
-  # Add new method to get finished dir
-  system.method.insert = d.get_finished_dir,simple,”cat=/mnt/tera/complete/,$d.get_custom1=”&lt;/p&gt;
 
-&lt;p&gt;system.method.set_key = event.download.finished,move_complete,”d.set_directory=$d.get_finished_dir=;execute=mkdir,-p,$d.get_finished_dir=;execute=mv,-u,$d.get_base_path=,$d.get_finished_dir=”
-```&lt;/p&gt;
+#TVSHOWS LABEL
+# Add new method to get finished dir
+system.method.insert = d.get_finished_dir,simple,&quot;cat=/mnt/tera/complete/,$d.get_custom1=&quot;
+
+system.method.set_key = event.download.finished,move_complete,&quot;d.set_directory=$d.get_finished_dir=;execute=mkdir,-p,$d.get_finished_dir=;execute=mv,-u,$d.get_base_path=,$d.get_finished_dir=&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;The important things to note are:
 - enabling scgi + log file
