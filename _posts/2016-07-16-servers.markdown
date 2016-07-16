@@ -159,7 +159,6 @@ The important things to note are:
     ```
 
 Then go ahead and create a systemd unit file to start rTorrent on boot:
-
   ```
   [root@montecarlo ~]# cat /etc/systemd/system/default.target.wants/rt.service
   [Unit]
