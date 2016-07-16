@@ -23,6 +23,7 @@ Linux montecarlo 4.1.15-1-ARCH #1 SMP Tue Dec 15 18:39:32 MST 2015 armv7l GNU/Li
 11:19:29 up 13 days, 16:31,  1 user,  load average: 0.00, 0.03, 0.08
 ```
 This is powered via my old nexus 4 usb charger, and has a hard drive directly connected to it via usb
+
 ```
 [root@montecarlo ~]# lsusb
 Bus 001 Device 004: ID 1058:1021 Western Digital Technologies, Inc. Elements Desktop (WDBAAU)
@@ -142,22 +143,21 @@ system.method.set_key = event.download.finished,move_complete,"d.set_directory=$
 
 The important things to note are:
 
-  - enabling scgi + log file
+  * enabling scgi + log file  
     ```
     scgi_port = :5000
     log.xmlrpc  = /tmp/log/xmlrpc.log
     ```
-  - The move of stuff into a complete folder:
+  * The move of stuff into a complete folder:  
     ```
     #TVSHOWS LABEL
     # Add new method to get finished dir
     system.method.insert = d.get_finished_dir,simple,"cat=/mnt/tera/complete/,$d.get_custom1="
     ```
-  - The usage of that move method:
+  * The usage of that move method:  
     ```
     system.method.set_key = event.download.finished,move_complete,"d.set_directory=$d.get_finished_dir=;execute=mkdir,-p,$d.get_finished_dir=;execute=mv,-u,$d.get_base_path=,$d.get_finished_dir="
     ```
-
 
 
 Then go ahead and create a systemd unit file to start rTorrent on boot:

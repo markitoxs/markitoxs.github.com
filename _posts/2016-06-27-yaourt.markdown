@@ -1,10 +1,10 @@
- ```
+```
 ~  yaourt -Qm
 local/atom-editor-git 1.10.0.dev.221118c-1
 local/downgrader 2.0.0-3
 local/gnutls28 3.3.22-3
-local/google-chrome 51.0.2704.103-1
-local/google-chrome-beta 52.0.2743.41-1
+local/google-chrome 51.0 .2704.103-1
+local/google-chrome-beta  52.0.2743.41-1
 local/lib32-dbus-glib 0.106-1
 local/lib32-gconf 3.2.6-1
 local/lib32-gnutls28 3.3.22-3
