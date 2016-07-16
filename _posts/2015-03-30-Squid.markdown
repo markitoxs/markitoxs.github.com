@@ -1,3 +1,0 @@
-I did initially fork the project on github so I could do my own updates, but it looks like that guy, squid, has pushed a new update to mame4all-pi that implements a couple new features. 
-
-http://sourceforge.net/projects/mame4allpi/
