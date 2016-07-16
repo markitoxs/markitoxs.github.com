@@ -158,7 +158,7 @@ The important things to note are:
     ```
     system.method.set_key = event.download.finished,move_complete,"d.set_directory=$d.get_finished_dir=;execute=mkdir,-p,$d.get_finished_dir=;execute=mv,-u,$d.get_base_path=,$d.get_finished_dir="
     ```  
-
+    <br />
 
 Then go ahead and create a systemd unit file to start rTorrent on boot:
 
@@ -186,7 +186,7 @@ And enable it with: `systemctl enable rt`
 SickRage
 ---
 
-Sickrage is my download manager choice. I am calling it a download manager becuase I am not sure what to call it. It basically keeps a database with the shows we follow and looks for the episodes as they come out. I installed the package off the AUR: `yaourt sickrage2-git` which allows you to start it off via a systemd unit:
+Sickrage is my download manager choice. I am calling it a download manager becuase I am not sure what to call it. It basically keeps a database with the shows we follow and looks for the episodes as they come out. I installed the package off the AUR: `yaourt sickrage2-git` which allows you to start it off via a systemd unit:  
 ```
 [root@montecarlo ~]# systemctl list-units | grep sickrage  
 sickrage.service                  loaded active running   SickRage Daemon
