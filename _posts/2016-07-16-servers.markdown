@@ -143,22 +143,22 @@ system.method.set_key = event.download.finished,move_complete,"d.set_directory=$
 
 The important things to note are:
 
-  * enabling scgi + log file  
+  - enabling scgi + log file  
     ```
     scgi_port = :5000
     log.xmlrpc  = /tmp/log/xmlrpc.log
     ```
-  * The move of stuff into a complete folder:  
+  - The move of stuff into a complete folder:  
     ```
     #TVSHOWS LABEL
     # Add new method to get finished dir
     system.method.insert = d.get_finished_dir,simple,"cat=/mnt/tera/complete/,$d.get_custom1="
     ```
-  * The usage of that move method:  
+  - The usage of that move method:  
     ```
     system.method.set_key = event.download.finished,move_complete,"d.set_directory=$d.get_finished_dir=;execute=mkdir,-p,$d.get_finished_dir=;execute=mv,-u,$d.get_base_path=,$d.get_finished_dir="
     ```  
-    <br />
+<br />
 
 Then go ahead and create a systemd unit file to start rTorrent on boot:
 
