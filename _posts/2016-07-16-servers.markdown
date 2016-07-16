@@ -32,7 +32,7 @@ This HDD is a carryover from my life in the uk therefore it has a powerbrick wit
 
 The raspberry pi is connected directly to my router via a short cat5 cable. Absolute standard Arch install, and no modifications to pacman whatsoever.
 
-List of installed packages: [Packages]( https://gist.githubusercontent.com/markitoxs/a2c6941b3a05eedab22698891df11bd1/raw/83659f6a0dc6dcb9f2df344e77fc09065869ee7/installed_packages )
+List of installed packages: [Packages](https://gist.github.com/markitoxs/a2c6941b3a05eedab22698891df11bd1)
 
 Probably the only ones worth noticing are **rtorrent**,**samba**, **screen**, **sickrage2-git** (this one installed from the AUR).
 
