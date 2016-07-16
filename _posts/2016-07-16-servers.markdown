@@ -141,6 +141,7 @@ system.method.set_key = event.download.finished,move_complete,"d.set_directory=$
 ```
 
 The important things to note are:
+
 - enabling scgi + log file
   ```
   scgi_port = :5000
