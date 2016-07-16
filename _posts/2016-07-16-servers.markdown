@@ -229,10 +229,10 @@ Got to Shows/Add Shows/Add New Show
 
  - Find the show
  - Select Parent folder as: `/mnt/tera/Videos/tvshows`
-
+<br />
 Dont forget to enable the service with: `systemctl enable sickrage`
 
 Nvidia Shield TV
 ==========
 
-What a wonderful piece of hardware this is. All I did was simply isntall Kodi on it, and add `/mnt/tera/Videos/tvshows` as a share with the type of content set to Tvshows. 
+What a wonderful piece of hardware this is. All I did was simply isntall Kodi on it, and add `/mnt/tera/Videos/tvshows` as a share with the type of content set to Tvshows.
