@@ -6,50 +6,453 @@
 </description>
     <link>http://markitoxs.github.com/</link>
     <atom:link href="http://markitoxs.github.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 10 Feb 2015 12:24:22 -0800</pubDate>
-    <lastBuildDate>Tue, 10 Feb 2015 12:24:22 -0800</lastBuildDate>
-    <generator>Jekyll v2.5.3</generator>
+    <pubDate>Sat, 16 Jul 2016 12:23:59 -0700</pubDate>
+    <lastBuildDate>Sat, 16 Jul 2016 12:23:59 -0700</lastBuildDate>
+    <generator>Jekyll v3.1.6</generator>
     
       <item>
-        <title>Welcome to Jekyll22222!</title>
-        <description>&lt;p&gt;You’ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+        <title>Servers</title>
+        <description>&lt;h1 id=&quot;my-setup&quot;&gt;My setup&lt;/h1&gt;
 
-&lt;p&gt;To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+&lt;p&gt;I cannot even remember the first time I had a server at home. I believe it was during the first year at the University of Edinburgh, maybe ?&lt;/p&gt;
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+&lt;p&gt;I remember the hardware though, it was my old Hewlett-Packard Bell laptop. Which oddly enough, I still have around to this day.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Tom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Alright, my current hardware:&lt;/p&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Raspberry pi 2&lt;/li&gt;
+  &lt;li&gt;Desktop PC with dual monitors&lt;/li&gt;
+  &lt;li&gt;Nvidia shield TV connected to the TV&lt;/li&gt;
+  &lt;li&gt;Steam Link connected to the tv&lt;/li&gt;
+&lt;/ul&gt;
 
+&lt;h1 id=&quot;rasperry-pi-the-brains&quot;&gt;Rasperry pi: The brains&lt;/h1&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@montecarlo ~]# uname -a
+Linux montecarlo 4.1.15-1-ARCH #1 SMP Tue Dec 15 18:39:32 MST 2015 armv7l GNU/Linux
+[root@montecarlo ~]# uptime
+11:19:29 up 13 days, 16:31,  1 user,  load average: 0.00, 0.03, 0.08
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This is powered via my old nexus 4 usb charger, and has a hard drive directly connected to it via usb
+&lt;code class=&quot;highlighter-rouge&quot;&gt;
+[root@montecarlo ~]# lsusb
+Bus 001 Device 004: ID 1058:1021 Western Digital Technologies, Inc. Elements Desktop (WDBAAU)
+&lt;/code&gt;
+This HDD is a carryover from my life in the uk therefore it has a powerbrick with UK plug, so I have a travel adaptor connected to it. This irritates me greatly and cannot wait to get rid of it.&lt;/p&gt;
+
+&lt;p&gt;The raspberry pi is connected directly to my router via a short cat5 cable. Absolute standard Arch install, and no modifications to pacman whatsoever.&lt;/p&gt;
+
+&lt;p&gt;List of installed packages: &lt;a href=&quot;https://gist.githubusercontent.com/markitoxs/a2c6941b3a05eedab22698891df11bd1/raw/83659f6a0dc6dcb9f2df344e77fc09065869ee7/installed_packages&quot;&gt;Packages&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Probably the only ones worth noticing are &lt;strong&gt;rtorrent&lt;/strong&gt;,&lt;strong&gt;samba&lt;/strong&gt;, &lt;strong&gt;screen&lt;/strong&gt;, &lt;strong&gt;sickrage2-git&lt;/strong&gt; (this one installed from the AUR).&lt;/p&gt;
+
+&lt;p&gt;The raspberry pi acts as a file server, sharing the hard drive contents ( Yes, I am aware of the public, and 0777 mask):&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@montecarlo ~]# cat /etc/samba/smb.conf
+[global]
+workgroup = WORKGROUP
+server string = %h
+security = user
+usershare allow guests = yes
+map to guest = Bad User
+[Tera]
+path = /mnt/tera
+read only = no
+public = yes
+writable = yes
+create mask = 0777
+guest ok = yes
+browsable = yes
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Drive which is mounted automatically to &lt;code class=&quot;highlighter-rouge&quot;&gt;/mnt/tera&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@montecarlo ~]# cat /etc/fstab
+#
+# /etc/fstab: static file system information
+#
+# &amp;lt;file system&amp;gt;	&amp;lt;dir&amp;gt;	&amp;lt;type&amp;gt;	&amp;lt;options&amp;gt;	&amp;lt;dump&amp;gt;	&amp;lt;pass&amp;gt;
+/dev/mmcblk0p1  /boot   vfat    defaults        0       0
+UUID=29848b2b-9690-4961-8cba-929a734fe181 /mnt/tera ext4 rw,relatime,discard,data=ordered 0 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;rtorrent-096&quot;&gt;rTorrent (0.9.6)&lt;/h2&gt;
+&lt;p&gt;Alright, here is my &lt;code class=&quot;highlighter-rouge&quot;&gt;.rtorrent.rc&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;```
+  [root@montecarlo ~]# cat .rtorrent.rc
+  max_peers_seed = 5000
+  max_uploads = 30
+  upload_rate = 10&lt;/p&gt;
+
+&lt;p&gt;# Enable the default ratio group.
+  ratio.enable=&lt;/p&gt;
+
+&lt;p&gt;# Change the limits, the defaults should be sufficient.
+  ratio.min.set=5
+  ratio.max.set=10
+  ratio.upload.set=20M&lt;/p&gt;
+
+&lt;p&gt;# Changing the command triggered when the ratio is reached.
+  system.method.set = group.seeding.ratio.command, d.close=, d.erase=&lt;/p&gt;
+
+&lt;p&gt;# enable dht
+  dht = on&lt;/p&gt;
+
+&lt;p&gt;# UDP port to use for DHT.
+  #
+  dht_port = 12300&lt;/p&gt;
+
+&lt;p&gt;# Set whetever the client should try to connect to UDP trackers.
+  use_udp_trackers = yes&lt;/p&gt;
+
+&lt;p&gt;# Start opening ports at a random position within the port range.
+  port_random = yes&lt;/p&gt;
+
+&lt;p&gt;# Where do you want your downloads to go?
+  directory = /mnt/tera/downloads/
+  system.umask.set = 0000&lt;/p&gt;
+
+&lt;p&gt;# You can put this anywhere you like, but I put it here.
+  # Remember that you’ll have to create this directory
+  session = ~/.rtorrent/session&lt;/p&gt;
+
+&lt;p&gt;# Port range to use for listening.
+  # Remember if you’re connected through a NAT router, you’ll
+  # need to forward these ports.
+  port_range = 50471-50479
+  port_random = yes&lt;/p&gt;
+
+&lt;p&gt;# Enable peer exchange (for torrents not marked private)
+  peer_exchange = yes&lt;/p&gt;
+
+&lt;p&gt;#encription
+  encryption=allow_incoming,try_outgoing,enable_retry&lt;/p&gt;
+
+&lt;p&gt;scgi_port = :5000
+  log.xmlrpc  = /tmp/log/xmlrpc.log&lt;/p&gt;
+
+&lt;p&gt;log.open_file = “rtorrent.log”, (cat,/tmp/rtorrent.log)&lt;br /&gt;
+  log.open_file = “tracker.log”, (cat,/tmp/tracker.log)&lt;/p&gt;
+
+&lt;p&gt;log.add_output = “info”, “rtorrent.log”&lt;/p&gt;
+
+&lt;p&gt;log.add_output = “dht_debug”, “tracker.log”
+  log.add_output = “tracker_debug”, “tracker.log”&lt;/p&gt;
+
+&lt;p&gt;#TVSHOWS LABEL
+  # Add new method to get finished dir
+  system.method.insert = d.get_finished_dir,simple,”cat=/mnt/tera/complete/,$d.get_custom1=”&lt;/p&gt;
+
+&lt;p&gt;system.method.set_key = event.download.finished,move_complete,”d.set_directory=$d.get_finished_dir=;execute=mkdir,-p,$d.get_finished_dir=;execute=mv,-u,$d.get_base_path=,$d.get_finished_dir=”
+```&lt;/p&gt;
+
+&lt;p&gt;The important things to note are:
+- enabling scgi + log file
+  &lt;code class=&quot;highlighter-rouge&quot;&gt;
+  scgi_port = :5000
+  log.xmlrpc  = /tmp/log/xmlrpc.log
+ &lt;/code&gt;
+- The move of stuff into a complete folder:
+  &lt;code class=&quot;highlighter-rouge&quot;&gt;
+  #TVSHOWS LABEL
+  # Add new method to get finished dir
+  system.method.insert = d.get_finished_dir,simple,&quot;cat=/mnt/tera/complete/,$d.get_custom1=&quot;
+ &lt;/code&gt;
+- The usage of that move method:
+  &lt;code class=&quot;highlighter-rouge&quot;&gt;
+  system.method.set_key = event.download.finished,move_complete,&quot;d.set_directory=$d.get_finished_dir=;execute=mkdir,-p,$d.get_finished_dir=;execute=mv,-u,$d.get_base_path=,$d.get_finished_dir=&quot;
+ &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Then go ahead and create a systemd unit file to start rTorrent on boot:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@montecarlo ~]# cat /etc/systemd/system/default.target.wants/rt.service
+[Unit]
+Description=rTorrent
+After=network.target
+
+[Service]
+User=root
+Type=forking
+KillMode=none
+ExecStart=/usr/bin/screen -d -m -fa -S rtorrent /usr/bin/rtorrent
+ExecStop=/usr/bin/killall -w -s 2 /usr/bin/rtorrent
+WorkingDirectory=%h
+Restart=always
+
+[Install]
+WantedBy=default.target
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And enable it with: &lt;code class=&quot;highlighter-rouge&quot;&gt;systemctl enable rt&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;sickrage&quot;&gt;SickRage&lt;/h2&gt;
+
+&lt;p&gt;Sickrage is my download manager choice. I am calling it a download manager becuase I am not sure what to call it. It basically keeps a database with the shows we follow and looks for the episodes as they come out. I installed the package off the AUR: &lt;code class=&quot;highlighter-rouge&quot;&gt;yaourt sickrage2-git&lt;/code&gt; which allows you to start it off via a systemd unit:
+&lt;code class=&quot;highlighter-rouge&quot;&gt;
+[root@montecarlo ~]# systemctl list-units | grep sickrage  
+sickrage.service                  loaded active running   SickRage Daemon
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here comes the complicated part, so please stay with me on this one.&lt;/p&gt;
+
+&lt;p&gt;Go to general config and:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The root directory for sickrage will be at &lt;code class=&quot;highlighter-rouge&quot;&gt;/mnt/tera/Video/tvshows&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Generate an API key (for use later)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Go to Search Settings / Torrent search:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Enable torrent search providers&lt;/li&gt;
+  &lt;li&gt;Send .rtorrent files to: &lt;code class=&quot;highlighter-rouge&quot;&gt;rTorrent&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Torrent host:port    &lt;code class=&quot;highlighter-rouge&quot;&gt;scgi://localhost:5000&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Http Authentication:  &lt;code class=&quot;highlighter-rouge&quot;&gt;None&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Add label to torrent: &lt;code class=&quot;highlighter-rouge&quot;&gt;tvshows&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Downloaded files location: &lt;code class=&quot;highlighter-rouge&quot;&gt;/mnt/tera/complete&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(Note that the scgi details and the location matches with our previous rtorrent config.)&lt;/p&gt;
+
+&lt;p&gt;You can verify the scgi connection by hitting ** Test Connection**&lt;/p&gt;
+
+&lt;p&gt;Go to Post Processing:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Enable&lt;/li&gt;
+  &lt;li&gt;Post Processing Dir: &lt;code class=&quot;highlighter-rouge&quot;&gt;/mnt/tera/complete/tvshows&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Processing Method: &lt;code class=&quot;highlighter-rouge&quot;&gt;Symbolic Link&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I choose Symbolic link to prevent issues with rtorrent seeding. Sickrage might move the file before the upload ratio is met, and leave you with an orphaned file.&lt;/p&gt;
+
+&lt;p&gt;Go to Notifications:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Enable notifying kodi (you will need to setup kodi to allow remote calls)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Got to Shows/Add Shows/Add New Show&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Find the show&lt;/li&gt;
+  &lt;li&gt;Select Parent folder as: &lt;code class=&quot;highlighter-rouge&quot;&gt;/mnt/tera/Videos/tvshows&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Dont forget to enable the service with: &lt;code class=&quot;highlighter-rouge&quot;&gt;systemctl enable sickrage&lt;/code&gt;&lt;/p&gt;
 </description>
-        <pubDate>Tue, 10 Feb 2015 03:43:10 -0800</pubDate>
-        <link>http://markitoxs.github.com/jekyll/update/2015/02/10/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">http://markitoxs.github.com/jekyll/update/2015/02/10/welcome-to-jekyll.html</guid>
+        <pubDate>Sat, 16 Jul 2016 00:00:00 -0700</pubDate>
+        <link>http://markitoxs.github.com/2016/07/16/servers.html</link>
+        <guid isPermaLink="true">http://markitoxs.github.com/2016/07/16/servers.html</guid>
         
-        
-        <category>jekyll</category>
-        
-        <category>update</category>
         
       </item>
     
       <item>
-        <title>Older post</title>
-        <description>&lt;p&gt;This is an older post&lt;/p&gt;
+        <title>Yaourt</title>
+        <description>&lt;p&gt;~  yaourt -Qm
+ local/atom-editor-git 1.10.0.dev.221118c-1
+ local/downgrader 2.0.0-3
+ local/gnutls28 3.3.22-3
+ local/google-chrome 51.0.2704.103-1
+ local/google-chrome-beta 52.0.2743.41-1
+ local/lib32-dbus-glib 0.106-1
+ local/lib32-gconf 3.2.6-1
+ local/lib32-gnutls28 3.3.22-3
+ local/lib32-kmod 22-1
+ local/lib32-libgcrypt15 1.5.4-1
+ local/lib32-libpng12 1.2.56-2
+ local/lib32-libudev0 182-2
+ local/libappindicator-gtk2 12.10.0-8
+ local/libappindicator-gtk3 12.10.0-8
+ local/libappindicator-sharp 12.10.0-8
+ local/libdbusmenu-glib 16.04.0-1
+ local/libdbusmenu-gtk2 16.04.0-1
+ local/libdbusmenu-gtk3 16.04.0-1
+ local/libindicator-gtk2 12.10.1-6
+ local/libindicator-gtk3 12.10.1-6
+ local/libmysqlclient 5.7.13-1
+ local/libpng12 1.2.56-3
+ local/libudev0 182-3
+ local/mysql 5.7.13-1
+ local/mysql-clients 5.7.13-1
+ local/pasystray-git 0.5.2.r54.g13e683e-1 (multimedia)
+ local/prelink 20130503-3
+ local/rbenv 1.0.0-1
+ local/ruby-build 20160330-1
+ local/steam-native 1.0.0.52-1
+ local/ttf-unifont 7.0.06-1
+ local/vim-lightline-git 20150318-1 (vim-plugins)
+ local/xfce-theme-manager 0.3.7-1
+ local/xfce4-indicator-plugin 2.3.3-2&lt;/p&gt;
+
 </description>
-        <pubDate>Mon, 09 Feb 2015 03:43:10 -0800</pubDate>
-        <link>http://markitoxs.github.com/jekyll/update/2015/02/09/welcome-to-jekyll2.html</link>
-        <guid isPermaLink="true">http://markitoxs.github.com/jekyll/update/2015/02/09/welcome-to-jekyll2.html</guid>
+        <pubDate>Mon, 27 Jun 2016 00:00:00 -0700</pubDate>
+        <link>http://markitoxs.github.com/2016/06/27/yaourt.html</link>
+        <guid isPermaLink="true">http://markitoxs.github.com/2016/06/27/yaourt.html</guid>
         
         
-        <category>jekyll</category>
+      </item>
+    
+      <item>
+        <title>Rebase</title>
+        <description>&lt;p&gt;Today was an interesting day. To be more precise, the last 24 hours were, since it all started last night.&lt;/p&gt;
+
+&lt;p&gt;Perhaps it would be fair to say that in fact it all started a few weeks ago when I started to realize how clueless I have been about everything, and howit is time to finally jump on the ship that will guide me towards the final destination: becoming the ultimate.&lt;/p&gt;
+
+&lt;p&gt;Not only orchestration is something that I will need to solve, and figure out the best approach, but monitoring will become a big part of it. There doesnt seem to be that many solutions out there. To be fair, I should say FREE solutions. My guess is that companies quickly realized how big of a market this can be in the world we live in, where continuous deployment is no longer a paradime that exists only in the wettest dreams of some crazy hipster guy.&lt;/p&gt;
+
+&lt;p&gt;This is a reality, and it is time to get real.&lt;/p&gt;
+
+&lt;p&gt;Get real.&lt;/p&gt;
+
+&lt;p&gt;I will follow the trends, and best-practices will be there for a reason, without sacrificing the power of one’s mind. Do not think inside the box, do not think outside the box. Just think. That is my advise to you future-self.&lt;/p&gt;
+
+&lt;p&gt;The concept of merge has always been interesting to me. Now I have something new to think about. Does rebase currently make sense in our workflow? I believe so. Time to fight for it.&lt;/p&gt;
+
+&lt;p&gt;We will integrate, we will deploy.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 17 Jun 2016 00:00:00 -0700</pubDate>
+        <link>http://markitoxs.github.com/2016/06/17/rebase.html</link>
+        <guid isPermaLink="true">http://markitoxs.github.com/2016/06/17/rebase.html</guid>
         
-        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>Rubygems_being_silly</title>
+        <description>&lt;p&gt;I was having the following issue today:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/home/markitoxs/.rbenv/versions/2.3.0/lib/ruby/site_ruby/2.3.0/rubygems/specification.rb:2278:in `check_version_conflict&#39;: can&#39;t activate json-1.8.2, already activated json-1.8.3 (Gem::LoadError)
+  from /home/markitoxs/.rbenv/versions/2.3.0/lib/ruby/site_ruby/2.3.0/rubygems/specification.rb:1404:in `activate&#39;
+    from /home/markitoxs/.rbenv/versions/2.3.0/lib/ruby/site_ruby/2.3.0/rubygems/core_ext/kernel_require.rb:89:in `block in require&#39;
+      from /home/markitoxs/.rbenv/versions/2.3.0/lib/ruby/site_ruby/2.3.0/rubygems/core_ext/kernel_require.rb:88:in `each&#39;
+        from /home/markitoxs/.rbenv/versions/2.3.0/lib/ruby/site_ruby/2.3.0/rubygems/core_ext/kernel_require.rb:88:in `require&#39;
+          from /home/markitoxs/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/right_chimp-2.1.16/lib/right_chimp.rb:12:in `&amp;lt;top (required)&amp;gt;&#39;
+            from /home/markitoxs/.rbenv/versions/2.3.0/lib/ruby/site_ruby/2.3.0/rubygems/core_ext/kernel_require.rb:68:in `require&#39;
+           &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;It turns out it was a rubygems issue, so all I had to do was:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gem update --system&lt;/code&gt;
+followed by:
+&lt;code class=&quot;highlighter-rouge&quot;&gt;gem cleanup&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 05 Jun 2016 00:00:00 -0700</pubDate>
+        <link>http://markitoxs.github.com/2016/06/05/rubygems_being_silly.html</link>
+        <guid isPermaLink="true">http://markitoxs.github.com/2016/06/05/rubygems_being_silly.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Arch_is_back</title>
+        <description>&lt;p&gt;Arch&lt;/p&gt;
+
+&lt;p&gt;We are back in business.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 05 Jun 2016 00:00:00 -0700</pubDate>
+        <link>http://markitoxs.github.com/2016/06/05/ARCH_IS_BACK.html</link>
+        <guid isPermaLink="true">http://markitoxs.github.com/2016/06/05/ARCH_IS_BACK.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Geeking_out</title>
+        <description>&lt;p&gt;So… need to upload pictures, but in the last week I got the desktop machine up and running based on the standard minimal arch install.&lt;/p&gt;
+
+&lt;p&gt;I am running Slim as my login control, openbox as my window manager, lxpanel as a panel, which I quite like because it gives me icons for all virtual desktops, and provides a tray area.&lt;/p&gt;
+
+&lt;p&gt;Spudcloud allows me to connect to Slack, Atom has been setup just as I had it before, with unity and molokai themes.&lt;/p&gt;
+
+&lt;p&gt;Speaking of themes, I managed to get powerline up and running on my prompt and also in my vim status bar.&lt;/p&gt;
+
+&lt;p&gt;This morning got sopcast and acestream running. Both are soooo much better than when I used them ages ago.&lt;/p&gt;
+
+&lt;p&gt;BTW, very surprised how good the opensource drivers for my 7970 are. So much better than the proprietary ones. Im calling this one a win.&lt;/p&gt;
+
+&lt;p&gt;Will post pictures soon.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 25 Apr 2015 00:00:00 -0700</pubDate>
+        <link>http://markitoxs.github.com/2015/04/25/geeking_out.html</link>
+        <guid isPermaLink="true">http://markitoxs.github.com/2015/04/25/geeking_out.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Psu</title>
+        <description>&lt;p&gt;The PSU for my new machine has arrived, and it is an absolute beauty
+&lt;img src=&quot;http://www.evga.com/products/images/gallery/110-B1-0750-VR_XL_4.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I had absolutely no clue that modular power supplies were a thing. This probably tells you how long it has been since I last build a machine.&lt;/p&gt;
+
+&lt;p&gt;The pi2, as much as I love the idea, was a no go for my needs. The web has turned into a jungle where a strong processor is required, so why not? Lets get a cheap PC, and go with it. This does not mean I will not continue my pursuit of a cheap low power machine, but will probably delay the answer to my questions, if any.&lt;/p&gt;
+
+&lt;p&gt;When it comes to computer cases, they all seem pretty standard. Square boxes. Really, there is not much else asides from that. A very long time ago, I came across some hackintosh computer that was using the bitfenix case, and instantly fell in love with it. I quickly added it to my amazon shopping cart, this was probably lik 16/18 months ago? Until last week, when I finally ordered it.&lt;/p&gt;
+
+&lt;p&gt;It arrived last friday. And it turns out that whoever decided the names for the sizes of motherboards was an absolute idiot. To me, as an engineer, it makes virtually, and I have a pretty good imagination, no sense that Micro ITX would be bigger than MINI-ITX, but that is the case. Get it? That is the case.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload.wikimedia.org/wikipedia/commons/1/11/VIA_Mini-ITX_Form_Factor_Comparison.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So I had to go and return to amazon the one I ordered and locate a model compatible with Micro-ITX. Luckily I was able to, but that is a story on its own.&lt;/p&gt;
+
+&lt;p&gt;Currently copying the img of archlinux into the usb stick! Will report back. 
+&lt;img src=&quot;http://www.maximumpc.com/files/prodigy_m.jpg&quot; alt=&quot;BitFenix case&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 13 Apr 2015 00:00:00 -0700</pubDate>
+        <link>http://markitoxs.github.com/2015/04/13/psu.html</link>
+        <guid isPermaLink="true">http://markitoxs.github.com/2015/04/13/psu.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Ice_ice_baby</title>
+        <description>&lt;p&gt;I think it is the first time in my life, that I have iced my knee.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 10 Apr 2015 00:00:00 -0700</pubDate>
+        <link>http://markitoxs.github.com/2015/04/10/ice_ice_baby.html</link>
+        <guid isPermaLink="true">http://markitoxs.github.com/2015/04/10/ice_ice_baby.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Linuxworld</title>
+        <description>&lt;p&gt;I dream of a world where gnu/linux is not a special choice, but a normal choice. Like what brand of car you are buying.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 04 Apr 2015 00:00:00 -0700</pubDate>
+        <link>http://markitoxs.github.com/2015/04/04/linuxworld.html</link>
+        <guid isPermaLink="true">http://markitoxs.github.com/2015/04/04/linuxworld.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Compiling</title>
+        <description>&lt;p&gt;Curren status is: compiling.&lt;/p&gt;
+
+&lt;p&gt;Lets give some hacking another shot. Will try to do some arcade emulation work.&lt;/p&gt;
+
+&lt;p&gt;I have been very very tempted to buy a cnc milling machine, but the high cost might be a bit too much. I was planning on doing some casing for another arcade machine, fully via CNC, but I dont have any further case scenarions asided from that one.&lt;/p&gt;
+
+&lt;p&gt;Will report back…&lt;/p&gt;
+
+&lt;p&gt;make&lt;/p&gt;
+</description>
+        <pubDate>Mon, 30 Mar 2015 00:00:00 -0700</pubDate>
+        <link>http://markitoxs.github.com/2015/03/30/compiling.html</link>
+        <guid isPermaLink="true">http://markitoxs.github.com/2015/03/30/compiling.html</guid>
+        
         
       </item>
     

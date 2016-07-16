@@ -60,31 +60,531 @@
   <ul class="post-list">
     
       <li>
-        <span class="post-meta">Feb 10, 2015</span>
+        <span class="post-meta">Jul 16, 2016</span>
 
-          <a class="post-link" href="/jekyll/update/2015/02/10/welcome-to-jekyll.html">Welcome to Jekyll22222!</a>
-          <p> <p>You’ll find this post in your <code>_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code>jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+          <a class="post-link" href="/2016/07/16/servers.html">Servers</a>
+          <p> <h1 id="my-setup">My setup</h1>
 
-<p>To add new posts, simply add a file in the <code>_posts</code> directory that follows the convention <code>YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+<p>I cannot even remember the first time I had a server at home. I believe it was during the first year at the University of Edinburgh, maybe ?</p>
 
-<p>Jekyll also offers powerful support for code snippets:</p>
+<p>I remember the hardware though, it was my old Hewlett-Packard Bell laptop. Which oddly enough, I still have around to this day.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">&quot;Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">&#39;Tom&#39;</span><span class="p">)</span>
-<span class="c1">#=&gt; prints &#39;Hi, Tom&#39; to STDOUT.</span></code></pre></div>
+<p>Alright, my current hardware:</p>
 
-<p>Check out the <a href="http://jekyllrb.com">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://github.com/jekyll/jekyll-help">Jekyll’s dedicated Help repository</a>.</p>
+<ul>
+  <li>Raspberry pi 2</li>
+  <li>Desktop PC with dual monitors</li>
+  <li>Nvidia shield TV connected to the TV</li>
+  <li>Steam Link connected to the tv</li>
+</ul>
+
+<h1 id="rasperry-pi-the-brains">Rasperry pi: The brains</h1>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[root@montecarlo ~]# uname -a
+Linux montecarlo 4.1.15-1-ARCH #1 SMP Tue Dec 15 18:39:32 MST 2015 armv7l GNU/Linux
+[root@montecarlo ~]# uptime
+11:19:29 up 13 days, 16:31,  1 user,  load average: 0.00, 0.03, 0.08
+</code></pre>
+</div>
+<p>This is powered via my old nexus 4 usb charger, and has a hard drive directly connected to it via usb
+<code class="highlighter-rouge">
+[root@montecarlo ~]# lsusb
+Bus 001 Device 004: ID 1058:1021 Western Digital Technologies, Inc. Elements Desktop (WDBAAU)
+</code>
+This HDD is a carryover from my life in the uk therefore it has a powerbrick with UK plug, so I have a travel adaptor connected to it. This irritates me greatly and cannot wait to get rid of it.</p>
+
+<p>The raspberry pi is connected directly to my router via a short cat5 cable. Absolute standard Arch install, and no modifications to pacman whatsoever.</p>
+
+<p>List of installed packages: <a href="https://gist.githubusercontent.com/markitoxs/a2c6941b3a05eedab22698891df11bd1/raw/83659f6a0dc6dcb9f2df344e77fc09065869ee7/installed_packages">Packages</a></p>
+
+<p>Probably the only ones worth noticing are <strong>rtorrent</strong>,<strong>samba</strong>, <strong>screen</strong>, <strong>sickrage2-git</strong> (this one installed from the AUR).</p>
+
+<p>The raspberry pi acts as a file server, sharing the hard drive contents ( Yes, I am aware of the public, and 0777 mask):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[root@montecarlo ~]# cat /etc/samba/smb.conf
+[global]
+workgroup = WORKGROUP
+server string = %h
+security = user
+usershare allow guests = yes
+map to guest = Bad User
+[Tera]
+path = /mnt/tera
+read only = no
+public = yes
+writable = yes
+create mask = 0777
+guest ok = yes
+browsable = yes
+</code></pre>
+</div>
+
+<p>Drive which is mounted automatically to <code class="highlighter-rouge">/mnt/tera</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[root@montecarlo ~]# cat /etc/fstab
+#
+# /etc/fstab: static file system information
+#
+# &lt;file system&gt;	&lt;dir&gt;	&lt;type&gt;	&lt;options&gt;	&lt;dump&gt;	&lt;pass&gt;
+/dev/mmcblk0p1  /boot   vfat    defaults        0       0
+UUID=29848b2b-9690-4961-8cba-929a734fe181 /mnt/tera ext4 rw,relatime,discard,data=ordered 0 0
+</code></pre>
+</div>
+
+<h2 id="rtorrent-096">rTorrent (0.9.6)</h2>
+<p>Alright, here is my <code class="highlighter-rouge">.rtorrent.rc</code></p>
+
+<p>```
+  [root@montecarlo ~]# cat .rtorrent.rc
+  max_peers_seed = 5000
+  max_uploads = 30
+  upload_rate = 10</p>
+
+<p># Enable the default ratio group.
+  ratio.enable=</p>
+
+<p># Change the limits, the defaults should be sufficient.
+  ratio.min.set=5
+  ratio.max.set=10
+  ratio.upload.set=20M</p>
+
+<p># Changing the command triggered when the ratio is reached.
+  system.method.set = group.seeding.ratio.command, d.close=, d.erase=</p>
+
+<p># enable dht
+  dht = on</p>
+
+<p># UDP port to use for DHT.
+  #
+  dht_port = 12300</p>
+
+<p># Set whetever the client should try to connect to UDP trackers.
+  use_udp_trackers = yes</p>
+
+<p># Start opening ports at a random position within the port range.
+  port_random = yes</p>
+
+<p># Where do you want your downloads to go?
+  directory = /mnt/tera/downloads/
+  system.umask.set = 0000</p>
+
+<p># You can put this anywhere you like, but I put it here.
+  # Remember that you’ll have to create this directory
+  session = ~/.rtorrent/session</p>
+
+<p># Port range to use for listening.
+  # Remember if you’re connected through a NAT router, you’ll
+  # need to forward these ports.
+  port_range = 50471-50479
+  port_random = yes</p>
+
+<p># Enable peer exchange (for torrents not marked private)
+  peer_exchange = yes</p>
+
+<p>#encription
+  encryption=allow_incoming,try_outgoing,enable_retry</p>
+
+<p>scgi_port = :5000
+  log.xmlrpc  = /tmp/log/xmlrpc.log</p>
+
+<p>log.open_file = “rtorrent.log”, (cat,/tmp/rtorrent.log)<br />
+  log.open_file = “tracker.log”, (cat,/tmp/tracker.log)</p>
+
+<p>log.add_output = “info”, “rtorrent.log”</p>
+
+<p>log.add_output = “dht_debug”, “tracker.log”
+  log.add_output = “tracker_debug”, “tracker.log”</p>
+
+<p>#TVSHOWS LABEL
+  # Add new method to get finished dir
+  system.method.insert = d.get_finished_dir,simple,”cat=/mnt/tera/complete/,$d.get_custom1=”</p>
+
+<p>system.method.set_key = event.download.finished,move_complete,”d.set_directory=$d.get_finished_dir=;execute=mkdir,-p,$d.get_finished_dir=;execute=mv,-u,$d.get_base_path=,$d.get_finished_dir=”
+```</p>
+
+<p>The important things to note are:
+- enabling scgi + log file
+  <code class="highlighter-rouge">
+  scgi_port = :5000
+  log.xmlrpc  = /tmp/log/xmlrpc.log
+ </code>
+- The move of stuff into a complete folder:
+  <code class="highlighter-rouge">
+  #TVSHOWS LABEL
+  # Add new method to get finished dir
+  system.method.insert = d.get_finished_dir,simple,"cat=/mnt/tera/complete/,$d.get_custom1="
+ </code>
+- The usage of that move method:
+  <code class="highlighter-rouge">
+  system.method.set_key = event.download.finished,move_complete,"d.set_directory=$d.get_finished_dir=;execute=mkdir,-p,$d.get_finished_dir=;execute=mv,-u,$d.get_base_path=,$d.get_finished_dir="
+ </code></p>
+
+<p>Then go ahead and create a systemd unit file to start rTorrent on boot:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[root@montecarlo ~]# cat /etc/systemd/system/default.target.wants/rt.service
+[Unit]
+Description=rTorrent
+After=network.target
+
+[Service]
+User=root
+Type=forking
+KillMode=none
+ExecStart=/usr/bin/screen -d -m -fa -S rtorrent /usr/bin/rtorrent
+ExecStop=/usr/bin/killall -w -s 2 /usr/bin/rtorrent
+WorkingDirectory=%h
+Restart=always
+
+[Install]
+WantedBy=default.target
+</code></pre>
+</div>
+
+<p>And enable it with: <code class="highlighter-rouge">systemctl enable rt</code></p>
+
+<h2 id="sickrage">SickRage</h2>
+
+<p>Sickrage is my download manager choice. I am calling it a download manager becuase I am not sure what to call it. It basically keeps a database with the shows we follow and looks for the episodes as they come out. I installed the package off the AUR: <code class="highlighter-rouge">yaourt sickrage2-git</code> which allows you to start it off via a systemd unit:
+<code class="highlighter-rouge">
+[root@montecarlo ~]# systemctl list-units | grep sickrage  
+sickrage.service                  loaded active running   SickRage Daemon
+</code></p>
+
+<p>Here comes the complicated part, so please stay with me on this one.</p>
+
+<p>Go to general config and:</p>
+
+<ul>
+  <li>The root directory for sickrage will be at <code class="highlighter-rouge">/mnt/tera/Video/tvshows</code></li>
+  <li>Generate an API key (for use later)</li>
+</ul>
+
+<p>Go to Search Settings / Torrent search:</p>
+
+<ul>
+  <li>Enable torrent search providers</li>
+  <li>Send .rtorrent files to: <code class="highlighter-rouge">rTorrent</code></li>
+  <li>Torrent host:port    <code class="highlighter-rouge">scgi://localhost:5000</code></li>
+  <li>Http Authentication:  <code class="highlighter-rouge">None</code></li>
+  <li>Add label to torrent: <code class="highlighter-rouge">tvshows</code></li>
+  <li>Downloaded files location: <code class="highlighter-rouge">/mnt/tera/complete</code></li>
+</ul>
+
+<p>(Note that the scgi details and the location matches with our previous rtorrent config.)</p>
+
+<p>You can verify the scgi connection by hitting ** Test Connection**</p>
+
+<p>Go to Post Processing:</p>
+
+<ul>
+  <li>Enable</li>
+  <li>Post Processing Dir: <code class="highlighter-rouge">/mnt/tera/complete/tvshows</code></li>
+  <li>Processing Method: <code class="highlighter-rouge">Symbolic Link</code></li>
+</ul>
+
+<p>I choose Symbolic link to prevent issues with rtorrent seeding. Sickrage might move the file before the upload ratio is met, and leave you with an orphaned file.</p>
+
+<p>Go to Notifications:</p>
+
+<ul>
+  <li>Enable notifying kodi (you will need to setup kodi to allow remote calls)</li>
+</ul>
+
+<p>Got to Shows/Add Shows/Add New Show</p>
+
+<ul>
+  <li>Find the show</li>
+  <li>Select Parent folder as: <code class="highlighter-rouge">/mnt/tera/Videos/tvshows</code></li>
+</ul>
+
+<p>Dont forget to enable the service with: <code class="highlighter-rouge">systemctl enable sickrage</code></p>
+ </p>
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 27, 2016</span>
+
+          <a class="post-link" href="/2016/06/27/yaourt.html">Yaourt</a>
+          <p> <p>~  yaourt -Qm
+ local/atom-editor-git 1.10.0.dev.221118c-1
+ local/downgrader 2.0.0-3
+ local/gnutls28 3.3.22-3
+ local/google-chrome 51.0.2704.103-1
+ local/google-chrome-beta 52.0.2743.41-1
+ local/lib32-dbus-glib 0.106-1
+ local/lib32-gconf 3.2.6-1
+ local/lib32-gnutls28 3.3.22-3
+ local/lib32-kmod 22-1
+ local/lib32-libgcrypt15 1.5.4-1
+ local/lib32-libpng12 1.2.56-2
+ local/lib32-libudev0 182-2
+ local/libappindicator-gtk2 12.10.0-8
+ local/libappindicator-gtk3 12.10.0-8
+ local/libappindicator-sharp 12.10.0-8
+ local/libdbusmenu-glib 16.04.0-1
+ local/libdbusmenu-gtk2 16.04.0-1
+ local/libdbusmenu-gtk3 16.04.0-1
+ local/libindicator-gtk2 12.10.1-6
+ local/libindicator-gtk3 12.10.1-6
+ local/libmysqlclient 5.7.13-1
+ local/libpng12 1.2.56-3
+ local/libudev0 182-3
+ local/mysql 5.7.13-1
+ local/mysql-clients 5.7.13-1
+ local/pasystray-git 0.5.2.r54.g13e683e-1 (multimedia)
+ local/prelink 20130503-3
+ local/rbenv 1.0.0-1
+ local/ruby-build 20160330-1
+ local/steam-native 1.0.0.52-1
+ local/ttf-unifont 7.0.06-1
+ local/vim-lightline-git 20150318-1 (vim-plugins)
+ local/xfce-theme-manager 0.3.7-1
+ local/xfce4-indicator-plugin 2.3.3-2</p>
 
  </p>
       </li>
     
       <li>
-        <span class="post-meta">Feb 9, 2015</span>
+        <span class="post-meta">Jun 17, 2016</span>
 
-          <a class="post-link" href="/jekyll/update/2015/02/09/welcome-to-jekyll2.html">Older post</a>
-          <p> <p>This is an older post</p>
+          <a class="post-link" href="/2016/06/17/rebase.html">Rebase</a>
+          <p> <p>Today was an interesting day. To be more precise, the last 24 hours were, since it all started last night.</p>
+
+<p>Perhaps it would be fair to say that in fact it all started a few weeks ago when I started to realize how clueless I have been about everything, and howit is time to finally jump on the ship that will guide me towards the final destination: becoming the ultimate.</p>
+
+<p>Not only orchestration is something that I will need to solve, and figure out the best approach, but monitoring will become a big part of it. There doesnt seem to be that many solutions out there. To be fair, I should say FREE solutions. My guess is that companies quickly realized how big of a market this can be in the world we live in, where continuous deployment is no longer a paradime that exists only in the wettest dreams of some crazy hipster guy.</p>
+
+<p>This is a reality, and it is time to get real.</p>
+
+<p>Get real.</p>
+
+<p>I will follow the trends, and best-practices will be there for a reason, without sacrificing the power of one’s mind. Do not think inside the box, do not think outside the box. Just think. That is my advise to you future-self.</p>
+
+<p>The concept of merge has always been interesting to me. Now I have something new to think about. Does rebase currently make sense in our workflow? I believe so. Time to fight for it.</p>
+
+<p>We will integrate, we will deploy.</p>
+ </p>
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 5, 2016</span>
+
+          <a class="post-link" href="/2016/06/05/rubygems_being_silly.html">Rubygems_being_silly</a>
+          <p> <p>I was having the following issue today:</p>
+
+<p><code class="highlighter-rouge">/home/markitoxs/.rbenv/versions/2.3.0/lib/ruby/site_ruby/2.3.0/rubygems/specification.rb:2278:in `check_version_conflict': can't activate json-1.8.2, already activated json-1.8.3 (Gem::LoadError)
+  from /home/markitoxs/.rbenv/versions/2.3.0/lib/ruby/site_ruby/2.3.0/rubygems/specification.rb:1404:in `activate'
+    from /home/markitoxs/.rbenv/versions/2.3.0/lib/ruby/site_ruby/2.3.0/rubygems/core_ext/kernel_require.rb:89:in `block in require'
+      from /home/markitoxs/.rbenv/versions/2.3.0/lib/ruby/site_ruby/2.3.0/rubygems/core_ext/kernel_require.rb:88:in `each'
+        from /home/markitoxs/.rbenv/versions/2.3.0/lib/ruby/site_ruby/2.3.0/rubygems/core_ext/kernel_require.rb:88:in `require'
+          from /home/markitoxs/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/right_chimp-2.1.16/lib/right_chimp.rb:12:in `&lt;top (required)&gt;'
+            from /home/markitoxs/.rbenv/versions/2.3.0/lib/ruby/site_ruby/2.3.0/rubygems/core_ext/kernel_require.rb:68:in `require'
+           </code></p>
+
+<p>It turns out it was a rubygems issue, so all I had to do was:</p>
+
+<p><code class="highlighter-rouge">gem update --system</code>
+followed by:
+<code class="highlighter-rouge">gem cleanup</code></p>
+ </p>
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 5, 2016</span>
+
+          <a class="post-link" href="/2016/06/05/ARCH_IS_BACK.html">Arch_is_back</a>
+          <p> <p>Arch</p>
+
+<p>We are back in business.</p>
+ </p>
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 25, 2015</span>
+
+          <a class="post-link" href="/2015/04/25/geeking_out.html">Geeking_out</a>
+          <p> <p>So… need to upload pictures, but in the last week I got the desktop machine up and running based on the standard minimal arch install.</p>
+
+<p>I am running Slim as my login control, openbox as my window manager, lxpanel as a panel, which I quite like because it gives me icons for all virtual desktops, and provides a tray area.</p>
+
+<p>Spudcloud allows me to connect to Slack, Atom has been setup just as I had it before, with unity and molokai themes.</p>
+
+<p>Speaking of themes, I managed to get powerline up and running on my prompt and also in my vim status bar.</p>
+
+<p>This morning got sopcast and acestream running. Both are soooo much better than when I used them ages ago.</p>
+
+<p>BTW, very surprised how good the opensource drivers for my 7970 are. So much better than the proprietary ones. Im calling this one a win.</p>
+
+<p>Will post pictures soon.</p>
+ </p>
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 13, 2015</span>
+
+          <a class="post-link" href="/2015/04/13/psu.html">Psu</a>
+          <p> <p>The PSU for my new machine has arrived, and it is an absolute beauty
+<img src="http://www.evga.com/products/images/gallery/110-B1-0750-VR_XL_4.jpg" alt="" /></p>
+
+<p>I had absolutely no clue that modular power supplies were a thing. This probably tells you how long it has been since I last build a machine.</p>
+
+<p>The pi2, as much as I love the idea, was a no go for my needs. The web has turned into a jungle where a strong processor is required, so why not? Lets get a cheap PC, and go with it. This does not mean I will not continue my pursuit of a cheap low power machine, but will probably delay the answer to my questions, if any.</p>
+
+<p>When it comes to computer cases, they all seem pretty standard. Square boxes. Really, there is not much else asides from that. A very long time ago, I came across some hackintosh computer that was using the bitfenix case, and instantly fell in love with it. I quickly added it to my amazon shopping cart, this was probably lik 16/18 months ago? Until last week, when I finally ordered it.</p>
+
+<p>It arrived last friday. And it turns out that whoever decided the names for the sizes of motherboards was an absolute idiot. To me, as an engineer, it makes virtually, and I have a pretty good imagination, no sense that Micro ITX would be bigger than MINI-ITX, but that is the case. Get it? That is the case.</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/1/11/VIA_Mini-ITX_Form_Factor_Comparison.jpg" alt="" /></p>
+
+<p>So I had to go and return to amazon the one I ordered and locate a model compatible with Micro-ITX. Luckily I was able to, but that is a story on its own.</p>
+
+<p>Currently copying the img of archlinux into the usb stick! Will report back. 
+<img src="http://www.maximumpc.com/files/prodigy_m.jpg" alt="BitFenix case" /></p>
+ </p>
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 10, 2015</span>
+
+          <a class="post-link" href="/2015/04/10/ice_ice_baby.html">Ice_ice_baby</a>
+          <p> <p>I think it is the first time in my life, that I have iced my knee.</p>
+ </p>
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 4, 2015</span>
+
+          <a class="post-link" href="/2015/04/04/linuxworld.html">Linuxworld</a>
+          <p> <p>I dream of a world where gnu/linux is not a special choice, but a normal choice. Like what brand of car you are buying.</p>
+ </p>
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 30, 2015</span>
+
+          <a class="post-link" href="/2015/03/30/compiling.html">Compiling</a>
+          <p> <p>Curren status is: compiling.</p>
+
+<p>Lets give some hacking another shot. Will try to do some arcade emulation work.</p>
+
+<p>I have been very very tempted to buy a cnc milling machine, but the high cost might be a bit too much. I was planning on doing some casing for another arcade machine, fully via CNC, but I dont have any further case scenarions asided from that one.</p>
+
+<p>Will report back…</p>
+
+<p>make</p>
+ </p>
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 30, 2015</span>
+
+          <a class="post-link" href="/2015/03/30/Squid.html">Squid</a>
+          <p> <p>I did initially fork the project on github so I could do my own updates, but it looks like that guy, squid, has pushed a new update to mame4all-pi that implements a couple new features.</p>
+
+<p>http://sourceforge.net/projects/mame4allpi/</p>
+ </p>
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 1, 2015</span>
+
+          <a class="post-link" href="/2015/03/01/almost.html">Almost</a>
+          <p> <p>Pain is almost gone. Thats good. Waiting for results.</p>
+
+<p>There’s been minimal surf lately, but I’ve tried to make the best out of it. Having a calendar and crossing days off it doesnt make sense. It’s not about that really.</p>
+
+<p>I was in SanFrancisco and didnt really like it. Felt alienated. I love the pace of life here even if it might seem boring for some people. I can see the ocean every day, and walk alongside the cliffs. Things are starting to fall into place slowly.</p>
+
+<p>We danced while we were cooking dinner.</p>
+
+<p>I just received some rechargeable patteries, they are the eneloop series. Should be good and much better than this energizer rubbish.</p>
+
+<p>Will I be able to be number 8 in the team? Who knows, hopefully I will. Im debating wether to get 14 or 5 as a backup number, perhaps 6.</p>
+
+<p>Also, I’ve come to realize that I no longer care about flagship phones. Sure, they are nice to look at, and perhaps to play with. But there is no point. I think something along the lines of what Motorola is doing with its MotoG and E is much much more interesting in today’s world. Trying to provide a good product at a lower cost is very exciting, and I am surprised more companies don’t attempt what Motorola (or Lenovo) is doing.</p>
+
+<p>Will keep updating. Session timeout.</p>
+ </p>
+      </li>
+    
+      <li>
+        <span class="post-meta">Feb 16, 2015</span>
+
+          <a class="post-link" href="/2015/02/16/faster.html">Faster</a>
+          <p> <p>Oh man, totally bough a new sd card, and the raspberry pi is now much faster and responsive.</p>
+
+<p>I am still finishing setting up my environment, but it is looking promising.</p>
+
+<p>Will be trying to get Darwin surfing later on. Might be a total fail. Might not.</p>
+
+<p>Snowboarding in 2 days!!!! WOOP WOOP.</p>
+
+ </p>
+      </li>
+    
+      <li>
+        <span class="post-meta">Feb 13, 2015</span>
+
+          <a class="post-link" href="/2015/02/13/solution.html">Solution</a>
+          <p> <p>Turns out I was right. My solution to the problem by Joan was right.</p>
+
+<p>Apparently the raspberry pi 2 is powerful enough to be used as a main machine. I’m very skeptical. I have just finished installing arch on the card, and will see if I can get some sort of basic desktop going on. See if it can handle some javascript heavy web browsing.</p>
+
+<p>Also, perhaps I should buy a new micro sd card, the pi seems to take forever for any operation that requires writing to the memory.</p>
+
+<p>Will keep updating.</p>
+ </p>
+      </li>
+    
+      <li>
+        <span class="post-meta">Feb 12, 2015</span>
+
+          <a class="post-link" href="/2015/02/12/hello.html">Hello</a>
+          <p> <p>sda</p>
+ </p>
+      </li>
+    
+      <li>
+        <span class="post-meta">Feb 12, 2015</span>
+
+          <a class="post-link" href="/2015/02/12/RAT.html">Rat</a>
+          <p> <p>===
+Random Access Thoughts
+===</p>
+
+<p>My chest still hurts. I have no clue whats going.</p>
+
+<p>Just cut my hair. I need to stop doing this by myself.</p>
+
+<p>Dang it still hurts.</p>
+
+<p>Creativity.</p>
+
+<p>Writing.</p>
+
+<p>Reading.</p>
+
+<p>Surfing.</p>
+
+<p>Longerboard. Paddle power.</p>
+
+<p>Snowboarding next week should be fun.</p>
+
+<p>I wish I had a normal machine that I could run linux on it and not have to worry about stupid things like battery life. Perhaps the raspberry pi2 that I just got might be the answer? It might be powerful enough, although it would be awesome to just get a NUC. Could I justify spending that much money for one? They are a bit pricey.</p>
+
+<p>Also, it worries me that a new generation of NUCs comes out after I buy this one, would be like a terrible waste of money.</p>
+
+<p>I really want a coffee with whipped cream and a donut, oh man, that sounds so good. Fuck it, maybe I just get one tomorrow. Why not.</p>
+
+<p>Got two Sonos Play:1 and they are absolutely fantastic, came across someone on reddit who said they shouldnt have tried the stereo setup, because now they want to buy two more. I am in exactly the same situation.</p>
+
+<p>Joan asked me what was a simple question today, about some script, and I failed to deliver an answer that was satisfactory. That bugs me a lot, and I want to know the answer.</p>
+
+<p>My brain works pretty much like JavaScript, with asynchronous callbacks about totally unrelated thoughts.</p>
+
+<p>Peace.</p>
+
+<p>m</p>
  </p>
       </li>
     
