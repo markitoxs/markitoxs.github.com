@@ -1,3 +1,4 @@
+ ```
  ~  yaourt -Qm
  local/atom-editor-git 1.10.0.dev.221118c-1
  local/downgrader 2.0.0-3
@@ -33,4 +34,4 @@
  local/vim-lightline-git 20150318-1 (vim-plugins)
  local/xfce-theme-manager 0.3.7-1
  local/xfce4-indicator-plugin 2.3.3-2
-
+```
