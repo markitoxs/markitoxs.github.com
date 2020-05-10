@@ -9,3 +9,5 @@ github_username:  netguino
 
 # Build settings
 markdown: kramdown
+
+theme: jekyll-theme-minimal
